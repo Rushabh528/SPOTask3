@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    {% block title %}
+    <title>Sign Up</title>
+    {% endblock %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'signup/css/style.css' %}" />
+    <script src="{% static 'signup/JS/signup.js' %}" ></script>
+  </head>
+  <body>
+    {% block body %}
+    <h1>Sign Up</h1>
+    <div id="formAlign">
+      <form method="POST">
+        {% csrf_token %}
+        
+        <input class="Field" type="text" name="{{form.username.name}}" placeholder="Username">
+        <input  class="Field" type="password" name="{{form.password1.name}}" placeholder="Password">
+        <input  class="Field" type="password" name="{{form.password2.name}}" placeholder=" Re-Type Password">
+
+
+
+        
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+       
+
+    {% endblock %}
+  </body>
+</html>

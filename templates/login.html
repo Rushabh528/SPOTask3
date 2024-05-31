@@ -1,0 +1,41 @@
+{% extends 'signup.html' %}
+
+{% block title %}
+<title>Login</title>
+{% endblock %}
+
+{% block body %}
+<h1>Login</h1>
+<div id="formAlign">
+    <form method="POST" >
+      {% csrf_token %}
+      
+      <div class="form-group">
+        <input type="text" placeholder="Username" name="{{ form.username.name }}" class="Field"  />
+        {% if form.username.errors %}
+        <span class="text-danger">{{ form.username.errors }}</span>
+        {% endif %}
+    </div>
+
+    
+    <div class="form-group">
+        <input type="password" placeholder="Password" name="{{ form.password.name }}" class="Field" />
+        <span class="text-danger">{{ form.password.errors }}</span>
+    </div>
+
+    <a href="signup/">Don't Have an account? Create one</a>
+      <button type="submit">Login</button>
+    </form>
+
+    
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+  </div>
+{% endblock %}
